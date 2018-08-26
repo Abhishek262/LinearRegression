@@ -136,8 +136,20 @@ def start()  :
     #Using tbe Traindataset, get the values of m and c adn hence a best fit line corresponding to the Traindataset
     best_fit_line = line(mFinder(Trainset),cFinder(Trainset))
 
-    print "The RMSE score is  : ",LinearRegression(best_fit_line,Testset)
+    print("The RMSE score is  : ",LinearRegression(best_fit_line,Testset))
 
+start()
+while True :
+    x = int(input("Try again?(0/1) : "))
+
+    if x == 0 :
+        break
+
+    elif x==1 :
+        start()
+    else :
+        print("Enter 0 or 1")
+    
 
 
 
