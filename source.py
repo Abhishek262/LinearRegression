@@ -4,6 +4,7 @@ and outputs the RMSE
                                                                          '''
 #imports
 import math,random,csv
+import pygame as p
 import numpy as np
 
 
@@ -101,7 +102,7 @@ def read(foo):
         Testdata.append(data[i])
     
 
-    return Traindata, Testdata
+    return Traindata, Testdata , data
 
 #Outputs the rmse and gets the values of predicted y for the test data, takes a line and Dataset object as an argument
 def LinearRegression(line,Testdataset)  :
@@ -122,35 +123,52 @@ def LinearRegression(line,Testdataset)  :
     #uses the rmse formula            
     rmse = math.sqrt(sumy/Testdataset.n)
 
-    return rmse
+    return rmse,predictedy
 
 #Just a function to init the program
 def start()  :
+    
     readFile = file('Datasets\Insurance_claims.csv','rb')
-    #Assigns data to training and test databases
-    Tr_set , Ts_set = read(readFile)
+    #Assigns data to training and test databases and an overall one
+    Tr_set , Ts_set ,data = read(readFile)
     #creates dataset objects using the assigned data above
     Trainset = dataSet(Tr_set)
     Testset = dataSet(Ts_set)
 
     #Using tbe Traindataset, get the values of m and c adn hence a best fit line corresponding to the Traindataset
     best_fit_line = line(mFinder(Trainset),cFinder(Trainset))
+    #finally, call this function to get the rmse and a list of predictions
+    rmse,predy = LinearRegression(best_fit_line,Testset) 
+    #just some text ui
 
-    print("The RMSE score is  : ",LinearRegression(best_fit_line,Testset))
+    while True :
+        print( " " )
+        inp = int(input("Press 1 for displaying predicted values,2 for RMSE score and 3 to exit: "))
+        cnt = 0
+        
+        if inp ==1  :
+            x  = float(input("Enter the independent value(x) : "))
+            for pair in data :
+                if x == pair[0] :
+                    print("y : ",pair[1])
+                    print("predicted value of y : ",predy[cnt])
+                    break
 
-start()
-while True :
-    x = int(input("Try again?(0/1) : "))
+                else :
+                    cnt+=1
+                    continue
+            else :
+                print("Independent variable not in the dataset")
 
-    if x == 0 :
-        break
-
-    elif x==1 :
-        start()
-    else :
-        print("Enter 0 or 1")
+        elif inp ==2 :
+                print("The RMSE score is  : ",rmse)
+        
     
 
+        elif inp ==3 :
+            break
+        else :
+            print("Invalid input")
 
 
 
