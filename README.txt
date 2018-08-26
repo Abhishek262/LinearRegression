@@ -28,7 +28,7 @@ Outputs the RMSE score for the random data sets used.
 
 RMSE for whole dataset used as testing and training - 38.339
 RMSE typically ranges between ~35.0 to ~60.0
-Max value of criterion variable(y) = 422.22
+Max value of criterion variable(y) = 422.22 
 
 
 
