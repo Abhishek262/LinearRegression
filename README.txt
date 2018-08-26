@@ -7,8 +7,7 @@ Source - https://www.kaggle.com/sunmarkil/auto-insurance-in-sweden-small-dataset
 
 modules used : numpy,random,csv and math
 ___________________________________________
-Contains line and Dataset classes. Takes in a random stretch of data from the insurance data set(using csv.reader) as a Training set and a
-Testing set(Dataset objects). Evaluates thir RMSE scores.
+Contains line and Dataset classes. Takes in a random stretch of data from the insurance data set(using csv.reader) as a Training set and aTesting set(Dataset objects). Evaluates thir RMSE scores.
 ___________________________________________
 Statistical formulae used:- 
 
